@@ -1,13 +1,23 @@
 import React from 'react'
+import './Post.css';
+import Avatar from "@material-ui/core/Avatar";
 
-function post() {
+function Post() {
     return (
-        <div>
-            <h3>Username</h3>
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg" alt=""/>
+        <div className="post">
+            <div className="post__header">
+                <Avatar
+                    className = "post__avatar"
+                    alt = "Shubham"
+                    src="/static/images/avatar/1.jpg"
+                />
+                <h3>Username</h3>
+            </div>
             
+            <img className="post__image" src="https://static.boredpanda.com/blog/wp-content/uploads/2020/07/shiba-cheems-meme-dog-balltze-53.jpg" alt="" />
+            <h4 className="post__text"><b>Username</b>: Caption</h4>
         </div>
     )
 }
 
-export default post
+export default Post
