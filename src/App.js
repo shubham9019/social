@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Post from './Post';
 
 
 
 function App() {
+  const [posts, setPosts] = useState([
+    {
+      username: "Shubham",
+      caption: "lolololol"
+    }
+    ,{
+      username: "Shubham Sharma",
+      caption: "lolololol"
+    }
+  ]);
+
+
   return (
     <div className="App">
       
@@ -16,9 +28,14 @@ function App() {
         />
         
       </div>
-      <Post/>
-      <Post/>
-      <Post/>
+      {
+        posts.map(posts =>(
+          <Post username={posts.username} caption={posts.caption}/>
+        ))
+      }
+      <Post />
+      <Post username="Shubham" caption="lol"/>
+      <Post username="Harshit" caption="lol"/>
     </div>
   );
 }
