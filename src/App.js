@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Post from './Post';
-import {db} from './firebase'
-import { makeStyles, Button } from '@material-ui/core/';
+import {db, auth} from './firebase'
+import { makeStyles, Button, Input } from '@material-ui/core/';
 import Modal from '@material-ui/core/Modal';
 
 
@@ -11,9 +11,9 @@ function getModalStyle(){
   const left = 50;
 
   return{
-    top: `${top}`,
-    left: `${left}`,
-    transform: `translate{-${top}%,-${left}%}`,
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%,-${left}%)`,
   };
 }
 
@@ -37,6 +37,29 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState(null);
+
+ 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) =>{
+      if(authUser){
+        console.log(authUser);
+        setUser(authUser);
+        
+      } else {
+        setUser(null);
+      }
+    })
+
+    return () =>{
+      unsubscribe();
+    }
+
+  },[user, username]);
+
   useEffect(() => {
     db.collection('posts').onSnapshot(snapshot =>{ 
       setPosts(snapshot.docs.map(doc => ({
@@ -46,6 +69,19 @@ function App() {
      })
   },[]);
 
+  const signUp = (event) => {
+    event.preventDefault();
+    auth
+    .createUserWithEmailAndPassword(email,password)
+    .then((authUser)=>{
+      return authUser.user.updateProfile({
+        displayName: username
+      })
+    })
+    .catch((error)=>alert(error.message))
+  }
+
+
   return (
     <div className="App">
       <Modal
@@ -53,7 +89,35 @@ function App() {
         onClose={() => setOpen(false)}
       >
       <div style={modalStyle} className={classes.paper}>
-        <h2>I am a modal</h2>
+        <form className="app__signup">
+        <center>
+          <img
+            className="app__headerImage"
+            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+            alt=""
+          />
+        </center>
+          <Input 
+            placeholder="Username"
+            type="username"
+            value={username}
+            onChange={(e)=>setUsername(e.target.value)}
+          />
+          <Input 
+            placeholder="Email"
+            type="text"
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+          />
+          <Input 
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
+          />
+          <Button type="submit" onClick={signUp}>Sign Up</Button>
+        
+        </form>
         </div>
       </Modal>
       <div className="app__header">
