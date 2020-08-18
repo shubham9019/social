@@ -2,7 +2,7 @@ import React from 'react'
 import './Post.css';
 import Avatar from "@material-ui/core/Avatar";
 
-function Post({ username, caption }) {
+function Post({ username, caption,imgUrl }) {
     return (
         <div className="post">
             <div className="post__header">
@@ -14,7 +14,7 @@ function Post({ username, caption }) {
                 <h3>{username}</h3>
             </div>
             
-            <img className="post__image" src="https://static.boredpanda.com/blog/wp-content/uploads/2020/07/shiba-cheems-meme-dog-balltze-53.jpg" alt="" />
+            <img className="post__image" src={imgUrl} alt="" />
             <h4 className="post__text"><b>{username}</b>: {caption}</h4>
         </div>
     )
