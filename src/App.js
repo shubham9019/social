@@ -63,9 +63,9 @@ function App() {
   },[user, username]);
 
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot =>{ 
+    db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot =>{ 
       setPosts(snapshot.docs.map(doc => ({
-        id : doc.id ,
+        id : doc.id,
         post: doc.data()
        })));
      })
@@ -100,11 +100,7 @@ function App() {
   return (
     <div className="App">
 
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName}/>
-      ):(
-        <h3>Sorry You need to login to upload</h3>
-      )}
+      
       
       <Modal
         open={open}
@@ -180,9 +176,7 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt=""
         />
-        
-      </div>
-      {user ?(
+        {user ?(
         <Button onClick={() => auth.signOut()}>Logout</Button>
       ):(
         <div className="app__loginContainer">
@@ -190,16 +184,27 @@ function App() {
         <Button onClick={()=> setOpen(true)}>Sign Up</Button>
         </div>
       )}
-      
-
+      </div>
+      <div className="app__posts">
       {
         posts.map(({id, post}) =>(
           <Post key={id} username={post.username} caption={post.caption} imgUrl={post.imgUrl}/>
         ))
       }
-      <Post />
-      <Post username="Shubham" caption="lol" imgUrl="https://static.boredpanda.com/blog/wp-content/uploads/2020/07/shiba-cheems-meme-dog-balltze-53.jpg"/>
-      <Post username="Harshit" caption="lol"/>
+      </div>
+      
+
+      
+
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ):(
+        <h3>Sorry You need to login to upload</h3>
+      )}
+
+
+      
     </div>
   );
 }
