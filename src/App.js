@@ -5,7 +5,7 @@ import {db, auth} from './firebase'
 import { makeStyles, Button, Input } from '@material-ui/core/';
 import Modal from '@material-ui/core/Modal';
 import ImageUpload from './ImageUpload'
-
+import logo from './logoo.JPG'
 
 function getModalStyle(){
   const top = 50;
@@ -21,9 +21,9 @@ function getModalStyle(){
   const useStyles = makeStyles((theme) => ({
     paper:{
       position: 'absolute',
-      width: 400,
+      width: '350px',
       backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
+      border: '1px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2,4,3),
     },
@@ -111,7 +111,7 @@ function App() {
         <center>
           <img
             className="app__headerImage"
-            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+            src={logo}
             alt=""
           />
         </center>
@@ -148,15 +148,15 @@ function App() {
         <center>
           <img
             className="app__headerImage"
-            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+            src={logo}
             alt=""
           />
         </center>
           <Input 
-            placeholder="Username"
-            type="username"
-            value={username}
-            onChange={(e)=>setUsername(e.target.value)}
+            placeholder="Email"
+            type="text"
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
           />
           <Input 
             placeholder="Password"
@@ -173,7 +173,7 @@ function App() {
       <div className="app__header">
         <img
           className="app__headerImage"
-          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
+          src={logo}
           alt=""
         />
         {user ?(
@@ -200,7 +200,7 @@ function App() {
       {user?.displayName ? (
         <ImageUpload username={user.displayName}/>
       ):(
-        <h3>Sorry You need to login to upload</h3>
+        <h3 className="login__error">You need to Sign In to upload</h3>
       )}
 
 

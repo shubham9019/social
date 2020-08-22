@@ -3,15 +3,16 @@
 }
 
 .App{
-  background-color: #fafafa;
-  
+  background: rgb(118,209,255);
+  background: linear-gradient(42deg, rgba(118,209,255,0.196516106442577) 0%, rgba(164,139,232,0.196516106442577) 100%);
 }
 .app__header{
   position: sticky; 
   top: 0;
   z-index: 1;
-  background-color: white ;
-  padding: 20px;
+  background: rgb(118,209,255);
+  background: radial-gradient(circle, rgba(118,209,255,1) 0%, rgba(164,139,232,1) 100%);
+  padding: 12px;
   border-bottom: 1px solid lightgrey;
   object-fit: contain;
   display: flex;
@@ -21,11 +22,17 @@
 
 .app__headerImage{
   object-fit: contain;
+  width: 220px;
+  border-radius: 10px;
 }
 
 .app__signup{
   display: flex;
+  width: 100%;
   flex-direction: column;
+  
+  
+  
 }
 
 .app__posts{
@@ -33,4 +40,19 @@
   justify-content: space-evenly;
   
   
+}
+
+.login__error{
+  text-align: center;
+  margin-top: 10px;
+  margin: auto;
+  position:sticky;
+  bottom:0;
+  background: rgb(118,209,255);
+  background: radial-gradient(circle, rgba(118,209,255,1) 0%, rgba(164,139,232,1) 100%);  padding-top:10px;
+  padding-left: 10px;
+  padding-right:10px;
+  padding-bottom: 5px;
+  padding-top: 5px; 
+  border: 2px solid grey;
 }

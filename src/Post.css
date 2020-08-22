@@ -1,7 +1,8 @@
 .post{
     max-width: 500px;
     background-color: white;
-    border:1px solid lightgrey;
+    border-radius: 10px;
+    border:2px solid grey;
     margin-bottom: 45px;
 
     display: flex;
@@ -9,6 +10,9 @@
     
     margin-left: auto;
     margin-right:auto;
+    padding-bottom: 7px;
+    box-shadow: 5px 5px 5px grey;
+    
 }
 
 
@@ -21,7 +25,10 @@
 }
 .post__text{
     font-weight: normal;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right:20px;
+    padding-top:15px;
+    padding-bottom: 10px;
 }
 
 .post__header{
@@ -36,7 +43,7 @@
 
 .post__commentBox{
     display: flex;
-    margin-top: 10px;
+    margin-top: 10px ;
 }
 
 .post__input{
@@ -56,5 +63,9 @@
 }
 
 .post__comments{
-    padding: 20px;
+    
+    padding-right: 20px;
+    padding-left: 20px;
+    
+    
 }

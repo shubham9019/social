@@ -1,13 +1,17 @@
 .imageupload{
     display: flex;
     flex-direction: column;
-    width: 60%;
     margin-left: auto;
     margin-right:auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    
-
+    position:sticky;
+    bottom:0;
+    background: rgb(118,209,255);
+    background: radial-gradient(circle, rgba(118,209,255,1) 0%, rgba(164,139,232,1) 100%);  padding-top:10px;
+    padding-left: 10px;
+    padding-right:10px;
+    border: 1px solid grey;
     
 }
 .imageupload__progress{
